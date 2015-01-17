@@ -34,17 +34,17 @@
   /**
    * Define paths, sources and destinations
    */
-   var stylusSrc   = ['front/stylesheets/paper.styl'];
-   var stylusFiles = ['front/stylesheets/**/*.styl'];
-   var stylusDest  = 'public/assets/stylesheets';
+  var stylusSrc   = ['front/stylesheets/paper.styl'];
+  var stylusFiles = ['front/stylesheets/**/*.styl'];
+  var stylusDest  = 'public/assets/stylesheets';
 
-   var scriptsSrc   = ['front/javascripts/**/*.js'];
-   var scriptsFiles = scriptsSrc;
-   var scriptsDest  = 'public/assets/javascripts';
+  var scriptsSrc   = ['front/javascripts/**/*.js'];
+  var scriptsFiles = scriptsSrc;
+  var scriptsDest  = 'public/assets/javascripts';
 
-   var jadeSrc   = ['front/**/*.jade'];
-   var jadeFiles = jadeSrc;
-   var jadeDest  = 'public';
+  var jadeSrc   = ['front/**/*.jade'];
+  var jadeFiles = jadeSrc;
+  var jadeDest  = 'public';
 
 
   /**
