@@ -1,31 +1,29 @@
 {
-  "name": "flash",
-  "version": "1.0.0",
-  "description": "A gulp, stylus and jade boilerplate",
-  "main": "index.js",
+  "name": "material",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/grvcoelho/flash.git"
+    "url": "https://github.com/grvcoelho/material.git"
   },
   "keywords": [
-    "gulp",
-    "jeet",
-    "jade",
+    "material",
+    "design", 
+    "google",
+    "angular",
     "stylus",
-    "kouto-swiss",
-    "livereload",
-    "boilerplate",
-    "flash"
+    "jade"
   ],
   "author": "Guilherme Rv Coelho <guilhermervcoelho@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/grvcoelho/flash/issues"
+    "url": "https://github.com/grvcoelho/material/issues"
   },
-  "homepage": "https://github.com/grvcoelho/flash",
+  "homepage": "https://github.com/grvcoelho/material",
   "devDependencies": {
     "grunt": "^0.4.5",
     "gulp": "^3.8.10",
