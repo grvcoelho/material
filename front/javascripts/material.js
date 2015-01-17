@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('material', [
+    .module('paper', [
       'ngRoute'
     ]);
 
