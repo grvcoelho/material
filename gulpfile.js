@@ -14,16 +14,21 @@
   var concat     = require('gulp-concat');
   var connect    = require('gulp-connect');
   var jade       = require('gulp-jade');
+  var jshint     = require('gulp-jshint');
   var livereload = require('gulp-livereload');
   var plumber    = require('gulp-plumber');
   var sourcemaps = require('gulp-sourcemaps');
   var stylus     = require('gulp-stylus');
   var uglify     = require('gulp-uglify');
+  var watch      = require('gulp-watch');
 
   /** Stylus dependencies */
   var jeet    = require('jeet');
   var kouto   = require('kouto-swiss');
   var rupture = require('rupture');
+
+  /** Jshint dependencies */
+  var stylish = require('jshint-stylish');
 
 
   /**
@@ -67,6 +72,20 @@
       .pipe(jade({pretty: true}))
       .pipe(gulp.dest(jadeDest))
       .pipe(livereload());
+  });
+
+
+  /**
+   * Jade task
+   *
+   * Concats javascripts files and minifies them
+   */
+  gulp.task('jshint', function() {
+    gulp.src(scriptsFiles)
+      .pipe(plumber())
+      .pipe(watch(scriptsFiles))
+      .pipe(jshint())
+      .pipe(jshint.reporter(stylish))
   });
 
 
