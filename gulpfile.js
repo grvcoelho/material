@@ -42,9 +42,13 @@
   var scriptsFiles = scriptsSrc;
   var scriptsDest  = 'public/assets/javascripts';
 
-  var jadeSrc   = ['front/**/*.jade'];
+  var jadeSrc   = ['front/*.jade'];
   var jadeFiles = jadeSrc;
   var jadeDest  = 'public';
+
+  var templatesSrc = ['front/javascripts/components/**/*.jade'];
+  var templatesFiles = templatesSrc;
+  var templatesDest = 'public/templates';
 
 
   /**
@@ -64,7 +68,7 @@
   /**
    * Jade task
    *
-   * Concats javascripts files and minifies them
+   * Compiles jade files into html
    */
   gulp.task('jade', function() {
     gulp.src(jadeSrc)
@@ -74,6 +78,19 @@
       .pipe(livereload());
   });
 
+
+  /**
+   * Templates task
+   *
+   * Compiles angular templates
+   */
+  gulp.task('templates', function() {
+    gulp.src(templatesSrc)
+      .pipe(plumber())
+      .pipe(jade({pretty: true}))
+      .pipe(gulp.dest(templatesDest))
+      .pipe(livereload());
+  });
 
   /**
    * Jade task
@@ -138,6 +155,7 @@
     gulp.watch(stylusFiles, ['stylus']);
     gulp.watch(scriptsFiles, ['scripts']);
     gulp.watch(jadeFiles, ['jade']);
+    gulp.watch(templatesFiles, ['templates']);
   });
 
 })();
