@@ -1,3 +1,9 @@
+# Build folder
+public
+
+# Bower folder
+bower_components
+
 # Logs
 logs
 *.log
