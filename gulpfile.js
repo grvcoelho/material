@@ -29,7 +29,7 @@
   /**
    * Define paths, sources and destinations
    */
-   var stylusSrc   = ['front/stylesheets/styles.styl'];
+   var stylusSrc   = ['front/stylesheets/material.styl'];
    var stylusFiles = ['front/stylesheets/**/*.styl'];
    var stylusDest  = 'public/assets/stylesheets';
 
@@ -79,7 +79,7 @@
     gulp.src(scriptsSrc)
       .pipe(plumber())
       .pipe(sourcemaps.init())
-      .pipe(concat('scripts.js'))
+      .pipe(concat('material.js'))
       .pipe(uglify())
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(scriptsDest))
