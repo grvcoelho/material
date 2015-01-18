@@ -4,7 +4,9 @@
 
   angular
     .module('paper', [
-      'ngRoute'
+      'ngRoute',
+
+      'paper.components.paper-button'
     ]);
 
   
