@@ -161,7 +161,7 @@
    *
    * Watches for changes and perform gulp tasks accordingly
    */
-  gulp.task('watch', ['jade', 'server', 'scripts', 'stylus'], function() {
+  gulp.task('watch', ['jade', 'server', 'scripts', 'stylus', 'templates'], function() {
     livereload.listen();
 
     gulp.watch(stylusFiles, ['stylus']);
