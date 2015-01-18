@@ -11,6 +11,7 @@
   /**
    * Requires gulp dependencies
    */
+  var clean      = require('gulp-clean');
   var concat     = require('gulp-concat');
   var connect    = require('gulp-connect');
   var jade       = require('gulp-jade');
@@ -49,6 +50,17 @@
   var templatesSrc = ['front/javascripts/components/**/*.jade'];
   var templatesFiles = templatesSrc;
   var templatesDest = 'public/templates';
+
+
+  /**
+   * Clean task
+   *
+   * Cleans the build directory
+   */
+  gulp.task('clean', function() {
+    gulp.src('public', {read: false})
+      .pipe(clean());
+  });
 
 
   /**
