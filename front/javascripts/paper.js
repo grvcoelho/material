@@ -6,7 +6,8 @@
     .module('paper', [
       'ngRoute',
 
-      'paper.components.paper-button'
+      'paper.components.paper-button',
+      'paper.components.paper-ripple'
     ]);
 
   

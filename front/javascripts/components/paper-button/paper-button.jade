@@ -1,12 +1,6 @@
-//- div.button(
-//-   ng-if="!hover",
-//-   ng-transclude,
-//-   ng-class="{'button--raised': raised, 'button--hover': hover, 'button--' + 'info': color}"
-//- )
-
 div.button(
-  ng-if="!hover",
-  ng-transclude,
   ng-class="[color ? 'button--' + (color || 'info'): null, raised ? 'button--raised' : null]"
 )
+  div(ng-transclude)
+  paper-ripple
 
