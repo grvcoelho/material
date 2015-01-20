@@ -1,2 +1,2 @@
-div.ripple-wrapper(ng-mousedown="rippleStart($event)")
+div.ripple-wrapper(ng-mousedown="rippleStart($event)" ng-mouseup="rippleEnd()")
   div.ripple(ng-repeat="ripple in ripples" ng-class="{'ripple-on': ripple.animating, 'ripple-out': ripple.ending}" ng-style="{'transform': ripple.transform,'background': ripple.color, 'left': ripple.left, 'top': ripple.top}")

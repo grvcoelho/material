@@ -25,33 +25,35 @@
         var relX = _getRelX(offset, event);
         var relY = _getRelY(offset, event);
 
-        var ripple = {
+        $scope.currentRipple = {
           color: 'black',
           left: relX + 'px',
           top: relY + 'px'
         };
 
-        $scope.ripples.push(ripple);
+        $scope.ripples.push($scope.currentRipple);
 
-        var size = _getNewSize(wrapper, ripple);
+        var size = _getNewSize(wrapper, $scope.currentRipple);
 
         $timeout(function() {
-          ripple.transform = 'scale(' + size + ')'; 
-          ripple.animating = true;
+          $scope.currentRipple.transform = 'scale(' + size + ')'; 
+          $scope.currentRipple.animating = true;
+          $scope.currentRipple.mousedown = true;
         }, 0);
 
+      };
+
+      $scope.rippleEnd = function() {
         $timeout(function() {
-          ripple.ending = true;
-          ripple.animating = false;
+          $scope.currentRipple.ending = true;
+          $scope.currentRipple.animating = false;
         },500);
 
         $timeout(function() {
-          ripple.ending = false;
-          $scope.ripples.splice(ripple, 1);
+          $scope.currentRipple.ending = false;
+          $scope.ripples.splice($scope.currentRipple, 1);
         }, 600);
       };
-
-      var $wrapper = $($element.children('.ripple-wrapper')[0]);
 
       function _getRelX(offset, event) {
         return event.pageX - offset.left;
