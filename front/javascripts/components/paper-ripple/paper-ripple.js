@@ -7,15 +7,19 @@
     .controller('PaperRippleController', PaperRippleController)
     .directive('paperRipple', paperRipple);
 
-    PaperRippleController.$inject = ['$scope', '$document', '$element', '$attrs', '$timeout', '$log'];
+    PaperRippleController.$inject = ['$scope', '$window', '$element', '$attrs', '$timeout', '$log'];
     paperRipple.$inject = [];
 
-    function PaperRippleController($scope, $document, $element, $attrs, $timeout, $log) {
+    function PaperRippleController($scope, $window, $element, $attrs, $timeout, $log) {
 
       $scope.ripples = [];  
 
+      if(typeof $attrs.color !== 'undefined') {
+        $scope.color = $attrs.color;
+      }
+
       $scope.rippleStart = function(event) {
-        var wrapper = $element.children('.ripple-wrapper')[0];
+        var wrapper = $element.children('.paper-ripple-wrapper')[0];
 
         var offset = {
           top: wrapper.offsetParent.offsetTop,
@@ -24,9 +28,12 @@
 
         var relX = _getRelX(offset, event);
         var relY = _getRelY(offset, event);
+        var rippleColor = $scope.color || $window.getComputedStyle($element[0].parentNode).color;
+
+        $log.info(rippleColor);
 
         $scope.currentRipple = {
-          color: 'black',
+          color: rippleColor,
           left: relX + 'px',
           top: relY + 'px'
         };
@@ -79,6 +86,7 @@
         restrict: 'EA',
         controller: 'PaperRippleController',
         templateUrl: 'templates/paper-ripple/paper-ripple.html',
+        replace: true,
         transclude: true,
         scope: {}
       };

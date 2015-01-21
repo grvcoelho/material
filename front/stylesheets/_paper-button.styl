@@ -1,0 +1,71 @@
+$paper-button-transition = box-shadow .28s $transition-bezier
+
+.paper-button
+  position relative
+  display inline-block
+  
+  width auto
+  padding 10px 8px
+  border-radius 3px
+  
+  font-size 14px
+  font-weight 500
+  color $black-text
+  text-transform uppercase
+  cursor pointer
+  
+  transition $paper-button-transition
+  
+  &:active
+    box-shadow $shadow-z2
+    transition $paper-button-transition
+  
+.paper-button--raised
+  @extend .paper-button
+  background $white
+  box-shadow $shadow-z1
+  
+.paper-button--hover
+  @extend .paper-button
+  transition $paper-button-transition
+  
+  &:hover
+    box-shadow $shadow-z1
+    transition $paper-button-transition
+    
+.paper-button--flat
+  @extend .paper-button
+  
+  &:active
+    box-shadow none
+    
+.paper-button--primary
+  @extend .paper-button
+  background $primary
+  color $white-text
+
+.paper-button--secondary
+  @extend .paper-button
+  background $secondary
+  color $white-text
+    
+.paper-button--success
+  @extend .paper-button
+  background $green
+  color $white-text
+
+.paper-button--info
+  @extend .paper-button
+  background $blue
+  color $white-text
+
+.paper-button--warning
+  @extend .paper-button
+  background $yellow
+  color $white-text
+
+.paper-button--danger
+  @extend .paper-button
+  background $red
+  color $white-text
+  

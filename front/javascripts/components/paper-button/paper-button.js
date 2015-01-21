@@ -15,6 +15,10 @@
         $scope.raised = $attrs.raised || true;
       }
 
+      if(typeof $attrs.flat !== 'undefined') {
+        $scope.flat = $attrs.flat || true;
+      }
+
       if(typeof $attrs.hover !== 'undefined') {
         $scope.hover = $attrs.hover || true;
       }
@@ -33,6 +37,7 @@
         restrict: 'EA',
         controller: 'PaperButtonController',
         templateUrl: 'templates/paper-button/paper-button.html',
+        replace: true,
         transclude: true,
         scope: {}
       };

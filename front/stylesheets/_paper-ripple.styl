@@ -1,7 +1,4 @@
-.withripple
-  position relative
-
-.ripple-wrapper
+.paper-ripple-wrapper
   position absolute
   top 0
   left 0
@@ -13,7 +10,7 @@
   border-radius inherit
   // pointer-events none
 
-.ripple
+.paper-ripple
   position absolute
   width 20px
   height 20px
@@ -26,10 +23,10 @@
   opacity 0
   pointer-events none
 
-.ripple.ripple-on
+.paper-ripple--on
   transition opacity 0.15s ease-in 0s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s
   opacity .15
 
-.ripple.ripple-out
+.paper-ripple--out
   transition opacity 0.1s linear 0s !important
   opacity 0
