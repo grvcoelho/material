@@ -1,6 +1,6 @@
 div.paper-button(
-  ng-class="[color ? 'paper-button--' + (color || 'info'): null, raised ? 'paper-button--raised' : null, flat ? 'paper-button--flat': null]"
+  ng-class="[color ? 'paper-button--' + (color || 'info'): null, raised ? 'paper-button--raised' : null, flat ? 'paper-button--flat': null, hover ? 'paper-button--hover' : null]"
 )
-  h1 hello there how are you doing, pal?
+  div.ng-transclude
   paper-ripple(ng-if="!noink")
-
+    

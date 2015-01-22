@@ -39,10 +39,6 @@
         $scope.color = $attrs.color;
       }
 
-      $scope.rippleStart = rippleStart;
-      $scope.rippleEnd   = rippleEnd;
-      $scope.rippleOut   = rippleOut;
-
 
       /**
        * Starts the ripple effect.

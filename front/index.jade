@@ -2,14 +2,15 @@ doctype html
 html(lang="en", ng-app="paper")
 head
   meta(charset="UTF-8")
-  title Material Design
+  title Paper Elements
   link(rel="stylesheet", href="//fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp")
   link(rel="stylesheet", href="assets/stylesheets/paper.css")
 body
   div.container
     h1 Buttons
 
-    paper-button(color="accent", flat) Button
+    paper-button(hover) Button
+    paper-button(color="info") Button
 
   script(src="components/angular/angular.min.js")
   script(src="components/angular-route/angular-route.min.js")

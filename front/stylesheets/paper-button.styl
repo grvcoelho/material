@@ -12,7 +12,6 @@ $paper-button-transition = box-shadow .28s $transition-bezier
   font-weight 500
   color $black-text
   text-transform uppercase
-  cursor pointer
   
   transition $paper-button-transition
   
@@ -22,7 +21,6 @@ $paper-button-transition = box-shadow .28s $transition-bezier
   
 .paper-button--raised
   @extend .paper-button
-  background $white
   box-shadow $shadow-z1
   
 .paper-button--hover
@@ -31,6 +29,10 @@ $paper-button-transition = box-shadow .28s $transition-bezier
   
   &:hover
     box-shadow $shadow-z1
+    transition $paper-button-transition
+  
+  &:active
+    box-shadow $shadow-z2
     transition $paper-button-transition
     
 .paper-button--flat
