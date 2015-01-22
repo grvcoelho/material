@@ -39,7 +39,6 @@
         $scope.color = $attrs.color;
       }
 
-
       $scope.rippleStart = rippleStart;
       $scope.rippleEnd   = rippleEnd;
       $scope.rippleOut   = rippleOut;
@@ -50,7 +49,7 @@
        *
        * @param {object} event
        */
-      function rippleStart(event) {
+      $scope.rippleStart = function(event) {
         /**
          * The ripple wrapper
          * @type {object}
@@ -123,7 +122,7 @@
           ripple.animating = false;
           $scope.rippleEnd(ripple);
         }, 500);
-      }
+      };
 
 
       /**
@@ -131,7 +130,7 @@
        *
        * @param {object} ripple - The ripple to be destroyed.
        */
-      function rippleEnd(ripple) {
+      $scope.rippleEnd = function(ripple) {
         if(!ripple.mousedown && !ripple.animating) {
           ripple.ending = true;
           ripple.starting = false;
@@ -141,16 +140,16 @@
             $scope.ripples.shift();
           }, 100);
         }
-      }
+      };
 
 
       /**
        * Informs when the mouse is up.
        */
-      function rippleOut() {
+      $scope.rippleOut = function() {
         $scope.currentRipple.mousedown = false;
         $scope.rippleEnd($scope.currentRipple);
-      }
+      };
 
 
       /**
