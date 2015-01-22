@@ -117,7 +117,7 @@
         $timeout(function() {
           ripple.animating = false;
           $scope.rippleEnd(ripple);
-        }, 500);
+        }, 380);
       };
 
 

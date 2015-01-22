@@ -3,7 +3,7 @@
   top 0
   left 0
   z-index 1
-  width 100%
+  width 105%
   height 100%
   overflow hidden
   border-radius inherit
@@ -23,9 +23,10 @@
   pointer-events none
 
 .paper-ripple--on
-  transition opacity 0.15s ease-in 0s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s
-  opacity .25
+  transition opacity 0.15s ease-in 0s, transform 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0.1s
+  opacity .3
 
 .paper-ripple--out
-  transition opacity 0.1s linear 0s !important
+  transition opacity .1s cubic-bezier(0.4, 0, 0.2, 1) 0s !important
+  transition opacity .1s linear 0s !important
   opacity 0

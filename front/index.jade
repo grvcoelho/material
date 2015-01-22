@@ -1,16 +1,18 @@
 doctype html
 html(lang="en", ng-app="paper")
 head
-  meta(charset="UTF-8")
-  title Paper Elements
   link(rel="stylesheet", href="//fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp")
   link(rel="stylesheet", href="assets/stylesheets/paper.css")
 body
   div.container
     h1 Buttons
 
-    paper-button(hover) Button
-    paper-button(color="info") Button
+    paper-button(color="accent", raised) Button
+    //- paper-button(raised, color="accent") Button
+    //- paper-button(raised, color="success") Button
+    //- paper-button(raised, color="info") Button
+    //- paper-button(raised, color="warning") Button
+    //- paper-button(raised, color="danger") Button
 
   script(src="components/angular/angular.min.js")
   script(src="components/angular-route/angular-route.min.js")

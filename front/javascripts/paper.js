@@ -5,6 +5,7 @@
   angular
     .module('paper', [
       'ngRoute',
+      'ngTouch',
 
       'paper.components.paper-button',
       'paper.components.paper-ripple'

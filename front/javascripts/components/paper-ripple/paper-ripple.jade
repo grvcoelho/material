@@ -1,2 +1,9 @@
-div.paper-ripple-wrapper(ng-mousedown="rippleStart($event)" ng-mouseup="rippleOut()")
-  div.paper-ripple(ng-repeat="ripple in ripples" ng-class="{'paper-ripple--on': ripple.starting, 'paper-ripple--out': ripple.ending}" ng-style="{'transform': ripple.transform,'background': ripple.color, 'left': ripple.left, 'top': ripple.top}")
+div.paper-ripple-wrapper(
+  ng-mousedown="rippleStart($event)",
+  ng-mouseup="rippleOut()"
+)
+  div.paper-ripple(
+    ng-repeat="ripple in ripples",
+    ng-class="{'paper-ripple--on': ripple.starting, 'paper-ripple--out': ripple.ending}",
+    ng-style="{'transform': ripple.transform,'background': ripple.color, 'left': ripple.left, 'top': ripple.top}"
+  )

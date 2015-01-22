@@ -2,22 +2,27 @@ $paper-button-transition = box-shadow .28s $transition-bezier
 
 .paper-button
   position relative
+  margin-right .29em
   display inline-block
   
   width auto
-  padding 10px 8px
+  padding 0.7em 0.57em
   border-radius 3px
   
   font-size 14px
   font-weight 500
   color $black-text
   text-transform uppercase
+  text-align center
   
   transition $paper-button-transition
   
   &:active
     box-shadow $shadow-z2
     transition $paper-button-transition
+  
+  &:last-child
+    margin-right 0    
   
 .paper-button--raised
   @extend .paper-button
