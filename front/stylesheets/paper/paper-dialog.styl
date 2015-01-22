@@ -1,0 +1,77 @@
+/**
+ * Variables
+ */
+ 
+/** Appearance */
+$dialog-background = $white
+$dialog-box-shadow = $shadow-z3
+$dialog-padding    = 24px
+
+/** Sizes */
+$dialog-size-sm = 320px
+$dialog-size-md = 640px
+$dialog-size-lg = 960px
+
+/** Misc */
+$dialog-transition = transform .4s $transition-bezier;
+
+
+.dialog
+  @extend .clearfix
+  width 80%
+  position fixed
+  top 50%
+  left 50%
+  transform translateX(-50%) translateY(-50%) scale(0)
+  z-index 5
+  background $dialog-background
+  border-radius 2px
+  box-shadow $dialog-box-shadow
+  transition $dialog-transition    
+  +above('md')
+    width 70%
+    
+  &.is-open
+    transform translateX(-50%) translateY(-50%) scale(1)
+    transition $dialog-transition    
+ 
+
+/**
+ * Sizes
+ */
+.dialog--sm
+  @extend .dialog
+  +above('lg')
+    width $dialog-size-sm
+
+.dialog--md
+  @extend .dialog
+  +above('lg')
+    width $dialog-size-md
+
+.dialog--lg
+  @extend .dialog
+  +above('lg')
+    width $dialog-size-lg
+  
+
+/**
+ * Components
+ */
+.dialog__header
+  padding $dialog-padding
+  padding-bottom ($dialog-padding/2)
+  font-size 21px
+  font-weight 500
+  
+.dialog__close
+  float right
+  color $black-icon
+  cursor pointer
+
+.dialog__body
+  padding $dialog-padding
+  padding-top ($dialog-padding/2)
+  font-size 16px
+  line-height 1.846
+  color $black-secondary-text
