@@ -1,0 +1,10 @@
+span
+  div.paper-dialog--sm(
+    ng-class="{'paper-dialog--open': open}"
+
+  )
+    div.paper-dialog__content
+      h2.paper-dialog__heading(ng-if="heading")
+        {{heading}}
+      p(ng-transclude)
+  div.paper-backdrop--active

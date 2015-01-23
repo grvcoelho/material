@@ -8,7 +8,8 @@
       'ngTouch',
 
       'paper.components.paper-button',
-      'paper.components.paper-ripple'
+      'paper.components.paper-ripple',
+      'paper.components.paper-dialog'
     ]);
 
   

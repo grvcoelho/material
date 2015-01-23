@@ -13,7 +13,8 @@ $dialog-size-md = 480px
 $dialog-size-lg = 640px
 
 /** Misc */
-$dialog-transition = transform .4s $transition-bezier;
+$dialog-transition = transform .28s $transition-bezier;
+// $dialog-transition = transform 0s $transition-bezier;
 
 
 .paper-dialog
@@ -62,18 +63,17 @@ $dialog-transition = transform .4s $transition-bezier;
  
 .paper-dialog__content
   padding $dialog-padding
-  
-  h2
-    margin 0 0 .83em
-    font-size 1.5em
-    font-weight 500
-    
-    
+     
   p 
     font-size 14px
     line-height 1.846
     color $black-secondary-text
       
+.paper-dialog__heading
+  margin 0 0 .83em
+  font-size 1.5em
+  font-weight 500
+  
 .paper-dialog__close
   float right
   color $black-icon
