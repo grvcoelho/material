@@ -39,7 +39,14 @@
   var stylusFiles = ['front/stylesheets/**/*.styl'];
   var stylusDest  = 'public/assets/stylesheets';
 
-  var scriptsSrc   = ['front/javascripts/**/*.js'];
+  var scriptsSrc   = [
+    'front/javascripts/**/*.module.js',
+    'front/javascripts/**/*.services.js',
+    'front/javascripts/**/*.controllers.js',
+    'front/javascripts/**/*.directives.js',
+    'front/javascripts/**/*.js'
+  ];
+
   var scriptsFiles = scriptsSrc;
   var scriptsDest  = 'public/assets/javascripts';
 
