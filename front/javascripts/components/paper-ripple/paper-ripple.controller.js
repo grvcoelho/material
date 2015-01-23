@@ -1,14 +1,12 @@
-(function(angular, window, document, undefined) {
+(function(angular, undefined) {
   
   'use strict';
 
   angular
-    .module('paper.components.paper-ripple', [])
-    .controller('PaperRippleController', PaperRippleController)
-    .directive('paperRipple', paperRipple);
+    .module('paper.components.paper-ripple')
+    .controller('PaperRippleController', PaperRippleController);
 
     PaperRippleController.$inject = ['$scope', '$window', '$element', '$attrs', '$timeout', '$log'];
-    paperRipple.$inject = [];
 
     /**
      * The paper ripple controller.
@@ -202,23 +200,5 @@
       }
     }
 
-
-    /**
-     * The paper ripple directive.
-     * Creates a ripple effect when the user interacts with the element.
-     * 
-     * @ngdoc directive
-     * @name paperRipple
-     */
-    function paperRipple() {
-      return {
-        restrict: 'EA',
-        controller: 'PaperRippleController',
-        templateUrl: 'templates/paper-ripple/paper-ripple.html',
-        replace: true,
-        transclude: true,
-        scope: {}
-      };
-    }
   
-})(angular, window, document);
+})(angular);

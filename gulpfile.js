@@ -135,7 +135,7 @@
       .pipe(plumber())
       .pipe(sourcemaps.init())
       .pipe(concat('paper.js'))
-      .pipe(uglify())
+      // .pipe(uglify())
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(scriptsDest))
       .pipe(livereload());
