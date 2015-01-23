@@ -9,7 +9,7 @@
     .directive('dialogToggle', dialogToggle)
     .service('$paperDialog', paperDialogService);
 
-    paperDialogController.$inject = ['$scope', '$attrs', '$log', '$paperDialog'];
+    paperDialogController.$inject = ['$scope', '$element', '$attrs', '$log', '$paperDialog'];
 
     dialogToggle.$inject = ['$paperDialog', '$log'];
     paperDialog.$inject = [];
@@ -27,7 +27,7 @@
      * @requires $timeout
      * @requires $log
      */
-    function paperDialogController($scope, $attrs, $log, $paperDialog) {
+    function paperDialogController($scope, $element, $attrs, $log, $paperDialog) {
       if(typeof $attrs.heading !== 'undefined') {
         $scope.heading = $attrs.heading;
       }
@@ -77,9 +77,21 @@
       function link($scope, $element, $attrs) {
         var target = $attrs.dialogToggle;
 
-        $element.on('click', function() {
+
+        if(_isTouch()) {
+          $element.on('click', _openDialog);
+        } else {
+          $element.on('mousedown', _openDialog);
+        }
+
+        function _openDialog() {
           $paperDialog.open(target);
-        });
+        }
+
+        function _isTouch() {
+          return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
       }
     }
 
@@ -91,6 +103,7 @@
 
       this.add = add;
       this.open = open;
+      this.closeAll = closeAll;
 
       function add(dialog) {
         _this.dialogs.push(dialog);
@@ -98,12 +111,24 @@
 
       function open(target) {
         var dialog = _getDialog(target);
-        
+
+        _this.closeAll();
+
         if(dialog.open) {
           dialog.open = false;
         } else {
           dialog.open = true;
         }
+      }
+
+      function closeAll() {
+        var x = $filter('filter')(_this.dialogs, function (elem) {
+          return elem.open === true;
+        });
+
+        angular.forEach(x, function(dialog) {
+          dialog.open = false;
+        });
       }
 
       function _getDialog(target) {
