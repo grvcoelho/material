@@ -9,14 +9,14 @@ $dialog-padding    = 24px
 
 /** Sizes */
 $dialog-size-sm = 320px
-$dialog-size-md = 640px
-$dialog-size-lg = 960px
+$dialog-size-md = 480px
+$dialog-size-lg = 640px
 
 /** Misc */
 $dialog-transition = transform .4s $transition-bezier;
 
 
-.dialog
+.paper-dialog
   @extend .clearfix
   width 80%
   position fixed
@@ -31,26 +31,27 @@ $dialog-transition = transform .4s $transition-bezier;
   +above('md')
     width 70%
     
-  &.is-open
-    transform translateX(-50%) translateY(-50%) scale(1)
-    transition $dialog-transition    
+.paper-dialog--open
+  @extend .paper-dialog
+  transform translateX(-50%) translateY(-50%) scale(1)
+  transition $dialog-transition    
  
 
 /**
  * Sizes
  */
-.dialog--sm
-  @extend .dialog
+.paper-dialog--sm
+  @extend .paper-dialog
   +above('lg')
     width $dialog-size-sm
 
-.dialog--md
-  @extend .dialog
+.paper-dialog--md
+  @extend .paper-dialog
   +above('lg')
     width $dialog-size-md
 
-.dialog--lg
-  @extend .dialog
+.paper-dialog--lg
+  @extend .paper-dialog
   +above('lg')
     width $dialog-size-lg
   
@@ -58,20 +59,22 @@ $dialog-transition = transform .4s $transition-bezier;
 /**
  * Components
  */
-.dialog__header
+ 
+.paper-dialog__content
   padding $dialog-padding
-  padding-bottom ($dialog-padding/2)
-  font-size 21px
-  font-weight 500
   
-.dialog__close
+  h2
+    margin 0 0 .83em
+    font-size 1.5em
+    font-weight 500
+    
+    
+  p 
+    font-size 14px
+    line-height 1.846
+    color $black-secondary-text
+      
+.paper-dialog__close
   float right
   color $black-icon
   cursor pointer
-
-.dialog__body
-  padding $dialog-padding
-  padding-top ($dialog-padding/2)
-  font-size 16px
-  line-height 1.846
-  color $black-secondary-text
