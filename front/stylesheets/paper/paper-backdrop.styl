@@ -1,0 +1,17 @@
+.paper-backdrop
+  width 100%
+  height 100%
+  position fixed
+  top 0 
+  left 0 
+  z-index 3
+  visibility hidden
+  opacity 0
+  background $black-backdrop
+  transition visibility $transition-bezier 0.28s, opacity 0.28s $transition-bezier
+  
+.paper-backdrop--active
+  @extend .paper-backdrop
+  visibility visible
+  opacity 1
+  transition visibility $transition-bezier 0.28s, opacity 0.28s $transition-bezier
