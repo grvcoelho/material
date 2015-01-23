@@ -36,9 +36,17 @@
         $scope.id = $attrs.id;
       }      
 
-      $scope.open = false;
+      if(typeof $attrs.closeable !== 'undefined') {
+        $scope.closeable = $attrs.closeable;
+      }      
 
+      $scope.open = false;
       $paperDialog.add($scope);
+
+      $scope.closeDialog = function(target) {
+        $log.info(target);
+        $paperDialog.close(target);
+      }
     }
 
 
@@ -103,6 +111,7 @@
 
       this.add = add;
       this.open = open;
+      this.close = close;
       this.closeAll = closeAll;
 
       function add(dialog) {
@@ -114,19 +123,26 @@
 
         _this.closeAll();
 
-        if(dialog.open) {
-          dialog.open = false;
-        } else {
+        if(!dialog.open) {
           dialog.open = true;
         }
       }
 
+      function close(target) {
+        var dialog = _getDialog(target);
+
+        if(dialog.open) {
+          dialog.open = false;
+        }
+
+      }
+
       function closeAll() {
-        var x = $filter('filter')(_this.dialogs, function (elem) {
+        var openDialogs = $filter('filter')(_this.dialogs, function (elem) {
           return elem.open === true;
         });
 
-        angular.forEach(x, function(dialog) {
+        angular.forEach(openDialogs, function(dialog) {
           dialog.open = false;
         });
       }
