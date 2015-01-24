@@ -6,7 +6,7 @@
     .module('paper.components.paper-dialog')
     .controller('paperDialogController', paperDialogController);
 
-  paperDialogController.$inject = ['$scope', '$element', '$attrs', '$log', '$paperDialog'];
+  paperDialogController.$inject = ['$scope', '$element', '$attrs', '$log', '$paperDialog', '$paperBackdrop'];
 
   /**
    * The paper dialog controller.
@@ -20,7 +20,11 @@
    * @requires $timeout
    * @requires $log
    */
-  function paperDialogController($scope, $element, $attrs, $log, $paperDialog) {
+  function paperDialogController($scope, $element, $attrs, $log, $paperDialog, $paperBackdrop) {
+    if(typeof $attrs.open !== 'undefined') {
+      $scope.open = true;
+    }
+
     if(typeof $attrs.heading !== 'undefined') {
       $scope.heading = $attrs.heading;
     }
@@ -37,8 +41,11 @@
     $paperDialog.add($scope);
 
     $scope.closeDialog = function(target) {
-      $log.info(target);
       $paperDialog.close(target);
+    }
+
+    $scope.closeAll = function() {
+      $paperDialog.closeAll();
     }
   }
   

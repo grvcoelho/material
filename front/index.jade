@@ -7,14 +7,13 @@ body
   div.container
     h1 Buttons
 
-    paper-dialog(id="#test", heading="This is a dialog heading")
+    paper-dialog(id="#test", heading="This is a dialog heading", open)
       |You can specify anything here now.
 
     paper-dialog(id="#world", heading="Hello World - Terms and Conditions", closeable)
-      paper-button(color="accent", raised, style="z-index: 9999", dialog-toggle="#test") Button
-      |Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate officia architecto, repellat nulla ad totam quidem deserunt numquam sapiente deleniti quia voluptatibus illum magnam aperiam sequi dolorem enim quam quae.
+      div Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate officia architecto, repellat nulla ad totam quidem deserunt numquam sapiente deleniti quia voluptatibus illum magnam aperiam sequi dolorem enim quam quae.
 
-    paper-button(color="primary", raised, style="z-index: 9999", dialog-toggle="#world") Button
+    paper-button(color="primary", raised, dialog-toggle="#world") Button
 
   script(src="components/angular/angular.min.js")
   script(src="components/angular-route/angular-route.min.js")

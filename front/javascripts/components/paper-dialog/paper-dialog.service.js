@@ -6,7 +6,7 @@
     .module('paper.components.paper-dialog')
     .service('$paperDialog', paperDialogService);
 
-  paperDialogService.$inject = ['$filter'];
+  paperDialogService.$inject = ['$filter', '$paperBackdrop'];
 
   /**
    * The paper dialog service.
@@ -15,7 +15,7 @@
    * @name  $paperDialog
    * @requires $filter
    */
-  function paperDialogService($filter) {
+  function paperDialogService($filter, $paperBackdrop) {
     var _this = this;
 
     this.dialogs = [];
@@ -37,6 +37,8 @@
       if(!dialog.open) {
         dialog.open = true;
       }
+
+      $paperBackdrop.activate();
     }
 
     function close(target) {
@@ -44,6 +46,7 @@
 
       if(dialog.open) {
         dialog.open = false;
+        $paperBackdrop.deactivate();
       }
 
     }
@@ -56,6 +59,8 @@
       angular.forEach(openDialogs, function(dialog) {
         dialog.open = false;
       });
+
+      $paperBackdrop.deactivate();
     }
 
     function _getDialog(target) {
