@@ -6,199 +6,199 @@
     .module('paper.components.paper-ripple')
     .controller('PaperRippleController', PaperRippleController);
 
-    PaperRippleController.$inject = ['$scope', '$window', '$element', '$attrs', '$timeout', '$log'];
+  PaperRippleController.$inject = ['$scope', '$window', '$element', '$attrs', '$timeout', '$log'];
+
+  /**
+   * The paper ripple controller.
+   * 
+   * @ngdoc controller
+   * @name  PaperRippleController
+   * @requires $scope
+   * @requires $window
+   * @requires $element
+   * @requires $attrs
+   * @requires $timeout
+   * @requires $log
+   */
+  function PaperRippleController($scope, $window, $element, $attrs, $timeout, $log) {
 
     /**
-     * The paper ripple controller.
-     * 
-     * @ngdoc controller
-     * @name  PaperRippleController
-     * @requires $scope
-     * @requires $window
-     * @requires $element
-     * @requires $attrs
-     * @requires $timeout
-     * @requires $log
+     * All the active ripples
+     * @type {Array}
      */
-    function PaperRippleController($scope, $window, $element, $attrs, $timeout, $log) {
+    $scope.ripples = [];  
 
+
+    if(typeof $attrs.color !== 'undefined') {
       /**
-       * All the active ripples
-       * @type {Array}
+       * The color of the ripple.
+       * @type {string}
        */
-      $scope.ripples = [];  
-
-
-      if(typeof $attrs.color !== 'undefined') {
-        /**
-         * The color of the ripple.
-         * @type {string}
-         */
-        $scope.color = $attrs.color;
-      }
-
-
-      /**
-       * Starts the ripple effect.
-       *
-       * @param {object} event
-       */
-      $scope.rippleStart = function(event) {
-        /**
-         * The ripple wrapper
-         * @type {object}
-         */
-        var wrapper = $element[0];
-
-
-        /**
-         * The offset of the wrapper
-         * @type {object}
-         */
-        var offset = {
-          top: wrapper.offsetParent.offsetTop,
-          left: wrapper.offsetParent.offsetLeft
-        };
-
-
-        /**
-         * The X coordinate the ripple must start on.
-         * @type {float}
-         */
-        var relX = _getRelX(offset, event);
-
-
-        /**
-         * The Y coordinate the ripple must start on.
-         * @type {float}
-         */
-        var relY = _getRelY(offset, event);
-
-
-        /**
-         * The ripple color. 
-         * @type {string}
-         */
-        var rippleColor = _getRippleColor(wrapper);
-
-
-        /**
-         * The new ripple
-         * @type {object}
-         */
-        var ripple = $scope.currentRipple = {
-          color: rippleColor,
-          left: relX + 'px',
-          top: relY + 'px'
-        };
-
-
-        /** 
-         * Pushes the new ripple to the $scope.ripples array
-         */
-        $scope.ripples.push(ripple);
-
-
-        /**
-         * The size of the ripple
-         * @type {float}
-         */
-        var size = _getNewSize(wrapper, $scope.currentRipple);
-
-        $timeout(function() {
-          $scope.currentRipple.transform = 'scale(' + size + ')'; 
-          $scope.currentRipple.starting = true;
-          $scope.currentRipple.mousedown = true;
-          $scope.currentRipple.animating = true;
-        }, 0);
-
-        $timeout(function() {
-          ripple.animating = false;
-          $scope.rippleEnd(ripple);
-        }, 380);
-      };
-
-
-      /**
-       * Ends the ripple effect and destroys the ripple.
-       *
-       * @param {object} ripple - The ripple to be destroyed.
-       */
-      $scope.rippleEnd = function(ripple) {
-        if(!ripple.mousedown && !ripple.animating) {
-          ripple.ending = true;
-          ripple.starting = false;
-
-          $timeout(function() {
-            ripple.ending = false;
-            $scope.ripples.shift();
-          }, 100);
-        }
-      };
-
-
-      /**
-       * Informs when the mouse is up.
-       */
-      $scope.rippleOut = function() {
-        $scope.currentRipple.mousedown = false;
-        $scope.rippleEnd($scope.currentRipple);
-      };
-
-
-      /**
-       * Gets the color for the ripple from either the scope or the parent element.
-       * @param  wrapper - The ripple wrapper.
-       * @return {string} - The ripple color (a hexadecimal or rgba).
-       */
-      function _getRippleColor(wrapper) {
-        return $scope.color || $window.getComputedStyle(wrapper.parentNode).color;
-      }
-
-
-      /**
-       * Calculates the proportion the ripple must scale up.
-       *
-       * @param  wrapper - The ripple wrapper.
-       * @return {float} - The proportion the ripple must scale up.
-       */
-      function _getNewSize(wrapper) {
-        return Math.max(wrapper.offsetWidth, wrapper.offsetHeight) / 20 * 2.5;
-      }
-
-
-      /**
-       * Gets the X coordinate the ripple effect must start on.
-       *
-       * @param  {object} offset - The offset of the ripple wrapper.
-       * @param  {object} event - The properties of the mouse event.
-       * @return {float} - The X coordinate.
-       */
-      function _getRelX(offset, event) {
-        return event.pageX - offset.left;
-      }
-
-
-      /**
-       * Gets the Y coordinate the ripple effect must start on.
-       * 
-       * @param  {object} offset - The offset of the ripple wrapper.
-       * @param  {object} event - The properties of the mouse event.
-       * @return {float} - The X coordinate.
-       */
-      function _getRelY(offset, event) {
-        return event.pageY - offset.top;
-      }
-
-
-      /**
-       * Checks if the client device is a touchscreen device.
-       * @return {boolean}
-       */
-      function _isTouch() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      }
+      $scope.color = $attrs.color;
     }
+
+
+    /**
+     * Starts the ripple effect.
+     *
+     * @param {object} event
+     */
+    $scope.rippleStart = function(event) {
+      /**
+       * The ripple wrapper
+       * @type {object}
+       */
+      var wrapper = $element[0];
+
+
+      /**
+       * The offset of the wrapper
+       * @type {object}
+       */
+      var offset = {
+        top: wrapper.offsetParent.offsetTop,
+        left: wrapper.offsetParent.offsetLeft
+      };
+
+
+      /**
+       * The X coordinate the ripple must start on.
+       * @type {float}
+       */
+      var relX = _getRelX(offset, event);
+
+
+      /**
+       * The Y coordinate the ripple must start on.
+       * @type {float}
+       */
+      var relY = _getRelY(offset, event);
+
+
+      /**
+       * The ripple color. 
+       * @type {string}
+       */
+      var rippleColor = _getRippleColor(wrapper);
+
+
+      /**
+       * The new ripple
+       * @type {object}
+       */
+      var ripple = $scope.currentRipple = {
+        color: rippleColor,
+        left: relX + 'px',
+        top: relY + 'px'
+      };
+
+
+      /** 
+       * Pushes the new ripple to the $scope.ripples array
+       */
+      $scope.ripples.push(ripple);
+
+
+      /**
+       * The size of the ripple
+       * @type {float}
+       */
+      var size = _getNewSize(wrapper, $scope.currentRipple);
+
+      $timeout(function() {
+        $scope.currentRipple.transform = 'scale(' + size + ')'; 
+        $scope.currentRipple.starting = true;
+        $scope.currentRipple.mousedown = true;
+        $scope.currentRipple.animating = true;
+      }, 0);
+
+      $timeout(function() {
+        ripple.animating = false;
+        $scope.rippleEnd(ripple);
+      }, 380);
+    };
+
+
+    /**
+     * Ends the ripple effect and destroys the ripple.
+     *
+     * @param {object} ripple - The ripple to be destroyed.
+     */
+    $scope.rippleEnd = function(ripple) {
+      if(!ripple.mousedown && !ripple.animating) {
+        ripple.ending = true;
+        ripple.starting = false;
+
+        $timeout(function() {
+          ripple.ending = false;
+          $scope.ripples.shift();
+        }, 100);
+      }
+    };
+
+
+    /**
+     * Informs when the mouse is up.
+     */
+    $scope.rippleOut = function() {
+      $scope.currentRipple.mousedown = false;
+      $scope.rippleEnd($scope.currentRipple);
+    };
+
+
+    /**
+     * Gets the color for the ripple from either the scope or the parent element.
+     * @param  wrapper - The ripple wrapper.
+     * @return {string} - The ripple color (a hexadecimal or rgba).
+     */
+    function _getRippleColor(wrapper) {
+      return $scope.color || $window.getComputedStyle(wrapper.parentNode).color;
+    }
+
+
+    /**
+     * Calculates the proportion the ripple must scale up.
+     *
+     * @param  wrapper - The ripple wrapper.
+     * @return {float} - The proportion the ripple must scale up.
+     */
+    function _getNewSize(wrapper) {
+      return Math.max(wrapper.offsetWidth, wrapper.offsetHeight) / 20 * 2.5;
+    }
+
+
+    /**
+     * Gets the X coordinate the ripple effect must start on.
+     *
+     * @param  {object} offset - The offset of the ripple wrapper.
+     * @param  {object} event - The properties of the mouse event.
+     * @return {float} - The X coordinate.
+     */
+    function _getRelX(offset, event) {
+      return event.pageX - offset.left;
+    }
+
+
+    /**
+     * Gets the Y coordinate the ripple effect must start on.
+     * 
+     * @param  {object} offset - The offset of the ripple wrapper.
+     * @param  {object} event - The properties of the mouse event.
+     * @return {float} - The X coordinate.
+     */
+    function _getRelY(offset, event) {
+      return event.pageY - offset.top;
+    }
+
+
+    /**
+     * Checks if the client device is a touchscreen device.
+     * @return {boolean}
+     */
+    function _isTouch() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+  }
 
   
 })(angular);

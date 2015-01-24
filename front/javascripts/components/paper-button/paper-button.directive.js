@@ -6,17 +6,17 @@
     .module('paper.components.paper-button')
     .directive('paperButton', paperButton);
 
-    paperButton.$inject = [];
+  paperButton.$inject = [];
 
-    function paperButton() {
-      return {
-        restrict: 'EA',
-        controller: 'PaperButtonController',
-        templateUrl: 'templates/paper-button/paper-button.html',
-        replace: true,
-        transclude: true,
-        scope: {}
-      };
-    }
+  function paperButton() {
+    return {
+      restrict: 'EA',
+      controller: 'PaperButtonController',
+      templateUrl: 'templates/paper-button/paper-button.html',
+      replace: true,
+      transclude: true,
+      scope: {}
+    };
+  }
   
 })(angular);

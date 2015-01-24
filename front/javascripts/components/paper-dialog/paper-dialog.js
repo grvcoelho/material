@@ -1,158 +1,158 @@
-(function(angular, undefined) {
+// (function(angular, undefined) {
   
-  'use strict';
+//   'use strict';
 
-  angular
-    .module('paper.components.paper-dialog', [])
-    .controller('paperDialogController', paperDialogController)
-    .directive('paperDialog', paperDialog)
-    .directive('dialogToggle', dialogToggle)
-    .service('$paperDialog', paperDialogService);
+//   angular
+//     .module('paper.components.paper-dialog')
+//     .controller('paperDialogController', paperDialogController)
+//     .directive('paperDialog', paperDialog)
+//     .directive('dialogToggle', dialogToggle)
+//     .service('$paperDialog', paperDialogService);
 
-    paperDialogController.$inject = ['$scope', '$element', '$attrs', '$log', '$paperDialog'];
+//     paperDialogController.$inject = ['$scope', '$element', '$attrs', '$log', '$paperDialog'];
 
-    dialogToggle.$inject = ['$paperDialog', '$log'];
-    paperDialog.$inject = [];
-    paperDialogService.$inject = ['$filter'];
+//     dialogToggle.$inject = ['$paperDialog', '$log'];
+//     paperDialog.$inject = [];
+//     paperDialogService.$inject = ['$filter'];
 
-    /**
-     * The paper dialog controller.
-     * 
-     * @ngdoc controller
-     * @name  paperDialogController
-     * @requires $scope
-     * @requires $window
-     * @requires $element
-     * @requires $attrs
-     * @requires $timeout
-     * @requires $log
-     */
-    function paperDialogController($scope, $element, $attrs, $log, $paperDialog) {
-      if(typeof $attrs.heading !== 'undefined') {
-        $scope.heading = $attrs.heading;
-      }
+//     /**
+//      * The paper dialog controller.
+//      * 
+//      * @ngdoc controller
+//      * @name  paperDialogController
+//      * @requires $scope
+//      * @requires $window
+//      * @requires $element
+//      * @requires $attrs
+//      * @requires $timeout
+//      * @requires $log
+//      */
+//     function paperDialogController($scope, $element, $attrs, $log, $paperDialog) {
+//       if(typeof $attrs.heading !== 'undefined') {
+//         $scope.heading = $attrs.heading;
+//       }
 
-      if(typeof $attrs.id !== 'undefined') {
-        $scope.id = $attrs.id;
-      }      
+//       if(typeof $attrs.id !== 'undefined') {
+//         $scope.id = $attrs.id;
+//       }      
 
-      if(typeof $attrs.closeable !== 'undefined') {
-        $scope.closeable = $attrs.closeable;
-      }      
+//       if(typeof $attrs.closeable !== 'undefined') {
+//         $scope.closeable = $attrs.closeable;
+//       }      
 
-      $scope.open = false;
-      $paperDialog.add($scope);
+//       $scope.open = false;
+//       $paperDialog.add($scope);
 
-      $scope.closeDialog = function(target) {
-        $log.info(target);
-        $paperDialog.close(target);
-      }
-    }
+//       $scope.closeDialog = function(target) {
+//         $log.info(target);
+//         $paperDialog.close(target);
+//       }
+//     }
 
 
-    /**
-     * The paper dialog directive.
-     * Creates and opens a dialog.
-     * 
-     * @ngdoc directive
-     * @name paperDialog
-     */
-    function paperDialog() {
-      return {
-        restrict: 'EA',
-        controller: 'paperDialogController',
-        templateUrl: 'templates/paper-dialog/paper-dialog.html',
-        replace: true,
-        transclude: true,
-        scope: {}
-      };
-    }
+//     /**
+//      * The paper dialog directive.
+//      * Creates and opens a dialog.
+//      * 
+//      * @ngdoc directive
+//      * @name paperDialog
+//      */
+//     function paperDialog() {
+//       return {
+//         restrict: 'EA',
+//         controller: 'paperDialogController',
+//         templateUrl: 'templates/paper-dialog/paper-dialog.html',
+//         replace: true,
+//         transclude: true,
+//         scope: {}
+//       };
+//     }
 
  
-    /**
-     * The paper dialog directive.
-     * Creates and opens a dialog.
-     * 
-     * @ngdoc directive
-     * @name dialogToggle
-     */
-    function dialogToggle($paperDialog, $log) {
-      return {
-        restrict: 'EA',
-        link: link
-      };
+//     *
+//      * The paper dialog directive.
+//      * Creates and opens a dialog.
+//      * 
+//      * @ngdoc directive
+//      * @name dialogToggle
+     
+//     function dialogToggle($paperDialog, $log) {
+//       return {
+//         restrict: 'EA',
+//         link: link
+//       };
 
-      function link($scope, $element, $attrs) {
-        var target = $attrs.dialogToggle;
-
-
-        if(_isTouch()) {
-          $element.on('click', _openDialog);
-        } else {
-          $element.on('mousedown', _openDialog);
-        }
-
-        function _openDialog() {
-          $paperDialog.open(target);
-        }
-
-        function _isTouch() {
-          return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        }
-
-      }
-    }
+//       function link($scope, $element, $attrs) {
+//         var target = $attrs.dialogToggle;
 
 
-    function paperDialogService($filter) {
-      var _this = this;
+//         if(_isTouch()) {
+//           $element.on('click', _openDialog);
+//         } else {
+//           $element.on('mousedown', _openDialog);
+//         }
 
-      this.dialogs = [];
+//         function _openDialog() {
+//           $paperDialog.open(target);
+//         }
 
-      this.add = add;
-      this.open = open;
-      this.close = close;
-      this.closeAll = closeAll;
+//         function _isTouch() {
+//           return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+//         }
 
-      function add(dialog) {
-        _this.dialogs.push(dialog);
-      }
+//       }
+//     }
 
-      function open(target) {
-        var dialog = _getDialog(target);
 
-        _this.closeAll();
+//     function paperDialogService($filter) {
+//       var _this = this;
 
-        if(!dialog.open) {
-          dialog.open = true;
-        }
-      }
+//       this.dialogs = [];
 
-      function close(target) {
-        var dialog = _getDialog(target);
+//       this.add = add;
+//       this.open = open;
+//       this.close = close;
+//       this.closeAll = closeAll;
 
-        if(dialog.open) {
-          dialog.open = false;
-        }
+//       function add(dialog) {
+//         _this.dialogs.push(dialog);
+//       }
 
-      }
+//       function open(target) {
+//         var dialog = _getDialog(target);
 
-      function closeAll() {
-        var openDialogs = $filter('filter')(_this.dialogs, function (elem) {
-          return elem.open === true;
-        });
+//         _this.closeAll();
 
-        angular.forEach(openDialogs, function(dialog) {
-          dialog.open = false;
-        });
-      }
+//         if(!dialog.open) {
+//           dialog.open = true;
+//         }
+//       }
 
-      function _getDialog(target) {
-        return $filter('filter')(_this.dialogs, function (elem) {
-          return elem.id === target;
-        })[0];
-      }
-    }
+//       function close(target) {
+//         var dialog = _getDialog(target);
+
+//         if(dialog.open) {
+//           dialog.open = false;
+//         }
+
+//       }
+
+//       function closeAll() {
+//         var openDialogs = $filter('filter')(_this.dialogs, function (elem) {
+//           return elem.open === true;
+//         });
+
+//         angular.forEach(openDialogs, function(dialog) {
+//           dialog.open = false;
+//         });
+//       }
+
+//       function _getDialog(target) {
+//         return $filter('filter')(_this.dialogs, function (elem) {
+//           return elem.id === target;
+//         })[0];
+//       }
+//     }
 
   
-})(angular);
+// })(angular);
