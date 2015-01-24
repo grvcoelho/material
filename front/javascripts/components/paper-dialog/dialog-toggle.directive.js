@@ -25,19 +25,9 @@
     function link($scope, $element, $attrs) {
       var target = $attrs.dialogToggle;
 
-      if(_isTouch()) {
-        $element.on('click', _openDialog);
-      } else {
-        $element.on('mousedown', _openDialog);
-      }
-
-      function _openDialog() {
+      $element.on('click', function() {
         $paperDialog.open(target);
-      }
-
-      function _isTouch() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      }
+      });
     }
   }
       
